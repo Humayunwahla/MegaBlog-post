@@ -14,10 +14,12 @@ export class Service{
         this.databases= new Databases(this.client)
         this.bucket = new Storage(this.client)
 
+
     }
 
     async createPost({title, slug, content, featuredImage, status, userId}){
         try {
+            console.log("Creating document with data:", { title, slug, content, featuredImage, status, userId });
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
@@ -29,9 +31,10 @@ export class Service{
                     status,
                     userId,
                 }
-            )
+            );
         } catch (error) {
-            throw error
+            console.error("Document creation failed:", error.message || error);
+           
         }
 
     }
@@ -79,13 +82,13 @@ export class Service{
     }
     async getPosts(queries = [Query.equal("status", "active")]){
         try {
-            return await this.databases.getDocument(
+            return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 queries,
             )
         } catch (error) {
-            throw error
+            console.error("Document creation failed:", error.message || error);
         }
     }
    

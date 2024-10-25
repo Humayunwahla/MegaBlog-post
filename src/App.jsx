@@ -31,11 +31,11 @@ function App() {
   
 
  return !loading ? (
-  <div className=' min-h-screen flex flex-wrap bg-gray-400 content-between'>
+  <div className=' min-h-screen flex flex-wrap bg-gray-300 content-between'>
     <div className='w-full block'>
       <Header/>
       <main>
-      TODO:  <Outlet />
+     <h1 className='mt-6 text-3xl font-bold '> Blogs</h1>  <Outlet />
       </main>
       <Footer/>
     </div>
