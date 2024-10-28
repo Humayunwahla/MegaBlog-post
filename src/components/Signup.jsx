@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import authService from '../appwrite/auth'
 import {Logo, Input, Button} from './index'
+import { login } from '../store/authSlice'
 
 function Signup() {
     const [error, setError] = useState("")
@@ -14,11 +15,19 @@ function Signup() {
     const create = async(data)=>{
         setError("")
         try {
+          console.log(data);
+          
             const userData = await authService.createAccount(data)
+            console.log(userData);
+            
             if(userData){ 
              const userData =  await authService.getCurrentUser()
+             console.log(userData);
+             
             if(userData) dispatch(login(userData));
             navigate("/")
+            console.log(userData);
+            
          }
         } catch (error) {
             setError(error.messsage)
