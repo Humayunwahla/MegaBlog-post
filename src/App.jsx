@@ -6,6 +6,7 @@ import authService from './appwrite/auth'
 import { login, logout } from './store/authSlice'
 import { Footer, Header } from './components'
 import { Outlet } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
   //  In react we can use it like this 
@@ -33,6 +34,7 @@ function App() {
  return !loading ? (
   <div className=' min-h-screen flex flex-wrap bg-gray-300 content-between'>
     <div className='w-full block'>
+    <ToastContainer />
       <Header/>
       <main>
      <h1 className='mt-6 text-3xl font-bold '> Blogs</h1>  <Outlet />
